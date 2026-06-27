@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bokun Studio</title>
+<style>
+  :root { --bg: #fafaf8; --text: #1a1a1a; --text-muted: #5c5c58; --accent: #2c2c2a; --border: #e0ded6; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { overflow-x: hidden; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; line-height: 1.6; overflow-x: hidden; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+  header.hero { padding: 64px 0 40px; border-bottom: 1px solid var(--border); }
+  .eyebrow { font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 16px; }
+  h1 { font-size: 32px; font-weight: 600; line-height: 1.25; margin-bottom: 18px; max-width: 560px; }
+  .subhead { font-size: 17px; color: var(--text-muted); max-width: 540px; }
+  .video-frame { margin: 36px 0 0; border-radius: 6px; overflow: hidden; background: #000; aspect-ratio: 16/9; position: relative; }
+  .video-caption { font-size: 13px; color: var(--text-muted); margin-top: 10px; }
+  section { padding: 48px 0; border-bottom: 1px solid var(--border); }
+  section:last-of-type { border-bottom: none; }
+  h2 { font-size: 20px; font-weight: 600; margin-bottom: 8px; }
+  h3 { font-size: 15px; font-weight: 600; margin-bottom: 12px; }
+  .section-note { font-size: 14px; color: var(--text-muted); margin-bottom: 28px; }
+  .case-study { display: grid; gap: 14px; }
+  .case-study .label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 4px; }
+  .case-study .row { padding: 12px 0; border-top: 1px solid var(--border); }
+  .case-study .row:first-child { border-top: none; padding-top: 0; }
+  .case-study p { font-size: 15px; }
+  .quote { font-size: 19px; font-style: italic; color: var(--accent); border-left: 3px solid var(--border); padding-left: 20px; margin: 24px 0; }
+  .case-section.case-tint { background: #f1efe6; width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); border-bottom: 1px solid var(--border); }
+  .case-section.case-tint .case-section-inner { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+  .case-section.case-card { padding: 36px; border: 1px solid var(--border); border-radius: 10px; background: #fff; margin: 48px 0; }
+  .case-section.case-card.case-tint { background: #fff; }
+  .reels-sub { margin-top: 36px; padding-top: 32px; border-top: 1px solid var(--border); }
+  .reels-row { display: flex; gap: 14px; }
+  .reels-row + .reels-row { margin-top: 14px; }
+  .reels-row.reels-row-single { max-width: 50%; margin-left: auto; margin-right: auto; }
+  .reel-frame { flex: 1 1 0; min-width: 0; aspect-ratio: 9/16; background: #000; border-radius: 6px; overflow: hidden; position: relative; }
+  .reels-photo-grid { margin-top: 20px; }
+  .photo-grid { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+  .photo-row { display: flex; gap: 10px; width: 100%; justify-content: flex-start; }
+  .photo-cell { flex-shrink: 0; max-width: 100%; }
+  .photo-cell img { display: block; max-width: 100%; border-radius: 4px; }
+  .photo-placeholder { background: #ece9e2; aspect-ratio: 4/3; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--text-muted); flex: 1 1 0; }
+  .gallery-section.gallery-dark { background: #161513; width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); border-bottom: none; }
+  .gallery-section.gallery-dark .gallery-section-inner { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+  .gallery-section.gallery-dark h2 { color: #f4f2ec; }
+  .gallery-section.gallery-dark .section-note { color: #a8a59c; }
+  .gallery-section.gallery-dark .photo-placeholder { background: #262420; color: #a8a59c; }
+  .why-list { display: grid; gap: 16px; margin-top: 4px; }
+  .why-item { display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: start; }
+  .why-item .num { font-size: 13px; color: var(--text-muted); padding-top: 2px; }
+  .why-item p { font-size: 15px; }
+  footer { padding: 48px 0 64px; }
+  .cta { font-size: 17px; margin-bottom: 20px; }
+  .contact-line { font-size: 15px; color: var(--text-muted); }
+  .contact-line a { color: var(--text); text-decoration: underline; }
+  @media (max-width: 600px) { h1 { font-size: 26px; } header.hero { padding: 40px 0 32px; } .reels-row { gap: 8px; } .reels-row.reels-row-single { max-width: 70%; } .case-section.case-card { padding: 24px; margin: 32px 0; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+      <header class="hero">
+        <p class="eyebrow">Pregled radova</p>
+        <h1>BRAND FILM &amp; PHOTOGRAPHY</h1>
+        <p class="subhead">Primjeri fotografije i video sadržaja koji smo do sada snimali.</p>
+        <div class="video-frame"><iframe src="https://www.youtube.com/embed/vGI39s0qrRM" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="width:100%;height:100%;"></iframe></div>
+        <p class="video-caption">Brand dokumentarac za VIP Holiday Booker — 2 min</p>
+      </header>
+
+      <section class="case-section">
+        <div class="case-section-inner">
+        <h2>Priča o najvećoj domaćoj agenciji za najam vila</h2>
+        <p class="section-note">Imali smo priliku snimiti kratki dokumentarac s osnivačem vodeće turističke agencije.</p>
+        <div class="case-study">
+          <div class="row"><p class="label">Zadatak</p><p>Povjeren nam je zadatak da gostima premium segmenta predstavimo hrvatsko gostoprimstvo.</p></div>
+          <div class="row"><p class="label">Pristup</p><p>Popričali smo s osnivačem agencije koja je ugostila tisuće gostiju, od prosječnih obitelji koje se cijele godine raduju ljetovanju do svjetski poznatih zvjezda u potrazi za diskretnim odmorom.</p></div>
+          <div class="row"><p class="label">Isporučeno</p><p>- dokumentarni brand film (2 min),<br>- 2 kratka reela za društvene mreže,<br>- set fotografija (interijer, lifestyle).</p></div>
+        </div>
+        
+        
+        <div class="reels-sub">
+          <h3>Kratki sadržaj za društvene mreže</h3>
+          
+          <div class="reels-row">
+            <div class="reel-frame"><iframe src="https://youtube.com/embed/2GhFPbE6sc8" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="width:100%;height:100%;"></iframe></div><div class="reel-frame"><iframe src="https://youtube.com/embed/-dfLmbsDFIg" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="width:100%;height:100%;"></iframe></div>
+          </div>
+        </div>
+        
+        <div class="photo-grid reels-photo-grid">
+          <div class="photo-row">
+            <div class="photo-cell"><img src="https://raw.githubusercontent.com/svalinaj/bokun-studio/main/interior_0.jpg" alt="Fotografija dnevnog boravka luksuzne vile"></div><div class="photo-cell"><img src="https://raw.githubusercontent.com/svalinaj/bokun-studio/main/interior_1.jpg" alt="Fotografija kuhinje luksuzne vile"></div>
+          </div></div>
+        </div>
+      </section>
+
+      <section class="gallery-section gallery-dark">
+        <div class="gallery-section-inner">
+        <h2>Fotografije</h2>
+        <p class="section-note">Preko 10 godina iskustva u fotografiranju interijera, radne atmosfere, portreta zaposlenika i još puno toga.</p>
+        <div class="photo-grid">
+          <div class="photo-row">
+            <div class="photo-cell"><img src="https://raw.githubusercontent.com/svalinaj/bokun-studio/main/office_0.jpg" alt="Blank - Zaposlenici u opuštenoj atmosferi"></div>
+          </div>
+          <div class="photo-row">
+            <div class="photo-cell"><img src="https://raw.githubusercontent.com/svalinaj/bokun-studio/main/office_1.jpg" alt="Blank - Ručak zaposlenika"></div>
+          </div>
+          <div class="photo-row">
+            <div class="photo-cell"><img src="https://raw.githubusercontent.com/svalinaj/bokun-studio/main/office_2.jpg" alt="Blank - Poslovni sastanak"></div>
+          </div>
+          <div class="photo-row">
+            <div class="photo-cell"><img src="https://github.com/svalinaj/bokun-studio/blob/main/office_4.jpg?raw=true" alt="Blank - Programerka radi"></div><div class="photo-cell"><img src="https://raw.githubusercontent.com/svalinaj/bokun-studio/main/office_3.jpg" alt="Blank - Portret zaposlenika"></div>
+          </div>
+          <div class="photo-row">
+            <div class="photo-cell"><img src="https://raw.githubusercontent.com/svalinaj/bokun-studio/main/portrait_0.jpg" alt="SplxAI - Fotografiranje zaposlenika"></div><div class="photo-cell"><img src="https://raw.githubusercontent.com/svalinaj/bokun-studio/main/portrait_1.jpg" alt="DUMP - Fotografiranje programera"></div>
+          </div>
+          <div class="photo-row">
+            <div class="photo-cell"><img src="https://raw.githubusercontent.com/svalinaj/bokun-studio/main/portrait_2.jpg" alt="Oasis Meu - Fotografiranje osnivačice"></div><div class="photo-cell"><img src="https://raw.githubusercontent.com/svalinaj/bokun-studio/main/portrait_3.jpg" alt="Poslovni portret"></div>
+          </div></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Zašto odabrati BOKUN Studio?</h2>
+        <div class="why-list">
+        <div class="why-item">
+          <span class="num">01</span>
+          <p><strong>Relevantno iskustvo</strong> — Surađivali smo s organizacijama različitih sektora i veličina, pretvarajući njihove priče u sadržaj koji privlači pažnju i potiče angažman na društvenim mrežama.</p>
+        </div>
+      
+        <div class="why-item">
+          <span class="num">02</span>
+          <p><strong>Full-stack produkcija</strong> — Nudimo usluge fotografije, video produkcije, dron snimke i animirane grafike, sve što je potrebno za kompletan vizualni nastup.</p>
+        </div>
+      
+        <div class="why-item">
+          <span class="num">03</span>
+          <p><strong>Fokus na brand</strong> — Pomažemo izgraditi prepoznatljiv brand kroz sadržaj koji se pamti, izaziva emocije i s kojim se ljudi mogu povezati.</p>
+        </div>
+      
+        <div class="why-item">
+          <span class="num">04</span>
+          <p><strong>Profesionalan pristup</strong> — Godine iskustva i pažnja na svaki detalj garantiraju visoku kvalitetu sadržaja koja odgovara stručnosti i razini usluge vaše ustanove.</p>
+        </div>
+      </div>
+      </section>
+
+      <footer>
+        <p class="cta">Spremni za suradnju? Kontaktirajte nas.</p>
+        <p class="contact-line">Josip Svalina · Bokun Studio · <a href="mailto:svalina99@gmail.com">svalina99@gmail.com</a> · <a href="https://bokun.studio">bokun.studio</a></p>
+      </footer>
+</div>
+<script>
+(function() {
+  function layoutRow(row) {
+    var cells = Array.prototype.slice.call(row.querySelectorAll('.photo-cell'));
+    if (!cells.length) return;
+    var gap = 10;
+    var rowWidth = row.clientWidth;
+    if (!rowWidth) {
+      requestAnimationFrame(function() { layoutRow(row); });
+      return;
+    }
+    var availableWidth = rowWidth - gap * (cells.length - 1);
+
+    var ratios = cells.map(function(cell) {
+      var img = cell.querySelector('img');
+      if (img && img.naturalWidth && img.naturalHeight) {
+        return img.naturalWidth / img.naturalHeight;
+      }
+      return 4 / 3;
+    });
+    var ratioSum = ratios.reduce(function(a, b) { return a + b; }, 0);
+    var height = availableWidth / ratioSum;
+
+    cells.forEach(function(cell, i) {
+      var width = height * ratios[i];
+      cell.style.flex = '0 0 ' + width + 'px';
+      cell.style.width = width + 'px';
+      cell.style.height = height + 'px';
+      var img = cell.querySelector('img');
+      if (img) {
+        img.style.width = width + 'px';
+        img.style.height = height + 'px';
+        img.style.maxWidth = 'none';
+      }
+    });
+  }
+
+  function layoutAllRows() {
+    document.querySelectorAll('.photo-row').forEach(layoutRow);
+  }
+
+  function init() {
+    layoutAllRows();
+    var images = document.querySelectorAll('.photo-cell img');
+    images.forEach(function(img) {
+      if (!img.complete) {
+        img.addEventListener('load', layoutAllRows);
+        img.addEventListener('error', layoutAllRows);
+      }
+    });
+  }
+
+  init();
+  window.addEventListener('load', layoutAllRows);
+  window.addEventListener('resize', layoutAllRows);
+})();
+</script>
+</body>
+</html>
