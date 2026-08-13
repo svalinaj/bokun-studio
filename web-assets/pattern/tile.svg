@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 300 600">
+  <!-- Generator: Adobe Illustrator 29.5.1, SVG Export Plug-In . SVG Version: 2.1.0 Build 141)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: none;
+      }
+
+      .st1 {
+        fill: #EFEBE2;
+      }
+
+      .st2 {
+        fill: #161A1F;
+        fill-rule: evenodd;
+      }
+
+      .st3 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="st0" width="300" height="600"/>
+    </clipPath>
+  </defs>
+  <rect class="st1" width="300" height="600"/>
+  <g class="st3">
+    <g>
+      <path class="st2" d="M-200-300v100h-100v-100h100ZM-200-232v32h-32v-32h32Z"/>
+      <path class="st2" d="M-150-300H-50v100h-100v-100ZM-82-300h32v32h-32v-32Z"/>
+      <path class="st2" d="M100-300v100H0v-100h100ZM100-232v32h-32v-32h32Z"/>
+      <path class="st2" d="M150-300h100v100h-100v-100ZM218-300h32v32h-32v-32Z"/>
+      <path class="st2" d="M400-300v100h-100v-100h100ZM400-232v32h-32v-32h32Z"/>
+      <path class="st2" d="M450-300h100v100h-100v-100ZM518-300h32v32h-32v-32Z"/>
+      <path class="st2" d="M-125-50h-100v-100h100V-50ZM-193-50h-32v-32h32v32Z"/>
+      <path class="st2" d="M-75-50v-100H25V-50h-100ZM-75-118v-32h32v32h-32Z"/>
+      <path class="st2" d="M175-50h-100v-100h100V-50ZM107-50h-32v-32h32v32Z"/>
+      <path class="st2" d="M225-50v-100h100V-50h-100ZM225-118v-32h32v32h-32Z"/>
+      <path class="st2" d="M475-50h-100v-100h100V-50ZM407-50h-32v-32h32v32Z"/>
+      <path class="st2" d="M-300,0h100v100h-100V0ZM-232,0h32v32h-32V0Z"/>
+      <path class="st2" d="M-50,0v100h-100V0H-50ZM-50,68v32h-32v-32h32Z"/>
+      <polygon class="st2" points="68 32 68 0 0 0 0 100 100 100 100 32 68 32"/>
+      <polygon class="st2" points="150 0 150 100 218 100 218 68 250 68 250 0 150 0"/>
+      <path class="st2" d="M300,0h100v100h-100V0ZM368,0h32v32h-32V0Z"/>
+      <path class="st2" d="M550,0v100h-100V0h100ZM550,68v32h-32v-32h32Z"/>
+      <path class="st2" d="M-225,250v-100h100v100h-100ZM-225,182v-32h32v32h-32Z"/>
+      <path class="st2" d="M25,250h-100v-100H25v100ZM-43,250h-32v-32h32v32Z"/>
+      <polygon class="st2" points="107 150 107 182 75 182 75 250 175 250 175 150 107 150"/>
+      <polygon class="st2" points="225 150 225 218 257 218 257 250 325 250 325 150 225 150"/>
+      <path class="st2" d="M375,250v-100h100v100h-100ZM375,182v-32h32v32h-32Z"/>
+      <path class="st2" d="M-200,300v100h-100v-100h100ZM-200,368v32h-32v-32h32Z"/>
+      <path class="st2" d="M-150,300H-50v100h-100v-100ZM-82,300h32v32h-32v-32Z"/>
+      <polygon class="st2" points="0 300 0 400 68 400 68 368 100 368 100 300 0 300"/>
+      <polygon class="st2" points="218 332 218 300 150 300 150 400 250 400 250 332 218 332"/>
+      <path class="st2" d="M400,300v100h-100v-100h100ZM400,368v32h-32v-32h32Z"/>
+      <path class="st2" d="M450,300h100v100h-100v-100ZM518,300h32v32h-32v-32Z"/>
+      <path class="st2" d="M-125,550h-100v-100h100v100ZM-193,550h-32v-32h32v32Z"/>
+      <path class="st2" d="M-75,550v-100H25v100h-100ZM-75,482v-32h32v32h-32Z"/>
+      <polygon class="st2" points="75 450 75 518 107 518 107 550 175 550 175 450 75 450"/>
+      <polygon class="st2" points="257 450 257 482 225 482 225 550 325 550 325 450 257 450"/>
+      <path class="st2" d="M475,550h-100v-100h100v100ZM407,550h-32v-32h32v32Z"/>
+      <path class="st2" d="M-300,600h100v100h-100v-100ZM-232,600h32v32h-32v-32Z"/>
+      <path class="st2" d="M-50,600v100h-100v-100H-50ZM-50,668v32h-32v-32h32Z"/>
+      <path class="st2" d="M0,600h100v100H0v-100ZM68,600h32v32h-32v-32Z"/>
+      <path class="st2" d="M250,600v100h-100v-100h100ZM250,668v32h-32v-32h32Z"/>
+      <path class="st2" d="M300,600h100v100h-100v-100ZM368,600h32v32h-32v-32Z"/>
+      <path class="st2" d="M550,600v100h-100v-100h100ZM550,668v32h-32v-32h32Z"/>
+      <path class="st2" d="M-225,850v-100h100v100h-100ZM-225,782v-32h32v32h-32Z"/>
+      <path class="st2" d="M25,850h-100v-100H25v100ZM-43,850h-32v-32h32v32Z"/>
+      <path class="st2" d="M75,850v-100h100v100h-100ZM75,782v-32h32v32h-32Z"/>
+      <path class="st2" d="M325,850h-100v-100h100v100ZM257,850h-32v-32h32v32Z"/>
+      <path class="st2" d="M375,850v-100h100v100h-100ZM375,782v-32h32v32h-32Z"/>
+    </g>
+  </g>
+</svg>
