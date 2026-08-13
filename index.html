@@ -154,6 +154,8 @@ nav.past .navlinks a.cta:hover{background:var(--blue);border-color:var(--blue);c
   gap:3.4rem;align-items:center;padding:8.5rem var(--m) 4.5rem}
 .hero-copy{display:flex;flex-direction:column;gap:1.5rem}
 .hero h1{line-height:1.05;max-width:28ch;letter-spacing:-.048em}
+.hero h1 .mob-only{display:none}
+.hero h1 .desk-only{display:inline}
 .hero h1 em{font-style:normal;color:var(--copper)}
 .hero .lead{max-width:36ch;opacity:0;transform:translateY(.6rem);
   transition:opacity .9s var(--eo) .62s,transform 1s var(--eo) .62s}
@@ -290,6 +292,8 @@ mark{background:rgba(191,99,61,.2);color:var(--copper);padding:1px .3rem}
   .hero{padding:6rem var(--m) 3rem}
 }
 @media(max-width:660px){
+  .hero h1 .mob-only{display:inline}
+  .hero h1 .desk-only{display:none}
   .grid figure,.grid figure.w6{grid-column:span 12}
   .navlinks{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.8rem;
     background:var(--paper);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .4s var(--eo)}
@@ -415,7 +419,7 @@ html.anim-off .hero-plate .pnl{opacity:0!important}
 <!-- ============ HERO ============ -->
 <header class="hero" id="top">
   <div class="hero-copy">
-    <h1>Vizualne priče<br>koje vaš brend pretvaraju u<br><em>jedini logičan izbor</em>.</h1>
+    <h1>Vizualne priče<br class="mob-only"> koje<br class="desk-only"> vaš brend pretvaraju u<br><em>jedini logičan izbor</em>.</h1>
     <p class="lead">Studio specijaliziran za vizualnu prezentaciju premium proizvoda, prostora i usluga.</p>
     <div class="cta-row">
       <a href="#radovi" class="btn">Pogledajte radove <span class="arw">→</span></a>
