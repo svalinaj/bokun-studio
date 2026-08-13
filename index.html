@@ -295,7 +295,7 @@ mark{background:rgba(191,99,61,.2);color:var(--copper);padding:1px .3rem}
     background:var(--paper);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .4s var(--eo)}
   .navlinks a{font-size:1.25rem}
   nav.open .navlinks{opacity:1;visibility:visible;pointer-events:auto}
-  nav.open{backdrop-filter:none}
+  nav.open{backdrop-filter:none;transition:background .5s var(--ease),border-color .5s var(--ease)}
   .navtoggle{display:inline-flex}
   .logostrip{grid-template-columns:repeat(2,1fr)}
   body.menu-open{overflow:hidden}
