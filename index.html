@@ -665,7 +665,7 @@ function splitWords(el){
 }
 document.querySelectorAll('h1,h2,.define .word').forEach(splitWords);
 function playWords(root,base){
-  root.querySelectorAll('.w').forEach((w,i)=>{ w.style.transitionDelay=(base+i*55)+'ms'; w.classList.add('is-in'); });
+  root.querySelectorAll('.w').forEach((w,i)=>{ w.style.transitionDelay=(base+i*30)+'ms'; w.classList.add('is-in'); });
 }
 
 /* ---------- masonry (unchanged maths) ---------- */
@@ -727,7 +727,7 @@ function heroIn(){
   plate.classList.add('reveal');
   const hero=document.querySelector('.hero');
   hero.classList.add('is-in');
-  playWords(document.querySelector('.hero h1'),120);
+  playWords(document.querySelector('.hero h1'),60);
   document.querySelectorAll('.hero .btn').forEach((b,i)=>b.style.transitionDelay=(820+i*110)+'ms');
 }
 
@@ -767,9 +767,9 @@ function heroIn(){
     setTimeout(()=>load.remove(),600);
     startHero();
   };
-  if(v && v.readyState>=2) setTimeout(finish,420);
-  else if(v) v.addEventListener('loadeddata',()=>setTimeout(finish,260),{once:true});
-  setTimeout(finish,1400);                       // hard cap
+  if(v && v.readyState>=2) setTimeout(finish,250);
+  else if(v) v.addEventListener('loadeddata',()=>setTimeout(finish,150),{once:true});
+  setTimeout(finish,700);                       // hard cap
 })();
 
 /* ---------- safety: nothing above the fold may stay hidden ---------- */
