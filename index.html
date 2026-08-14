@@ -440,7 +440,10 @@ html.anim-off .hero-plate .pnl{opacity:0!important}
   </div>
   <div class="hero-fig">
     <div class="hero-plate masked">
-      <video src="web-assets/video/hero-loop.mp4" poster="web-assets/video/hero-poster.webp" muted loop autoplay playsinline></video>
+      <video poster="web-assets/video/hero-poster.webp" muted loop autoplay playsinline>
+        <source src="web-assets/video/hero-loop-mobile.mp4" media="(max-width:660px)">
+        <source src="web-assets/video/hero-loop.mp4">
+      </video>
     </div>
     <div class="plate-cap"><span>bòkūn — komad, dio</span></div>
   </div>
@@ -546,7 +549,7 @@ html.anim-off .hero-plate .pnl{opacity:0!important}
       </div>
       <div class="studio-copy-b">
         <p>Iza studija stoji Josip Svalina, koji nakon dugogodišnjeg rada s vodećim regionalnim brendovima kroz Bokun Studio donosi provjereno znanje i moderne ideje za kompletnu vizualnu priču vašeg proizvoda, prostora ili usluge.</p>
-        <p>Specijalizirani smo za video produkciju i fotografiju namijenjenu digitalnim formatima i vašem brendu dajemo vizualnu vrijednost koja ostavlja bez daha.</p>
+        <p>Specijalizirani smo za video produkciju i fotografiju namijenjenu digitalnim formatima te vašem brendu dajemo vizualnu vrijednost i prepoznatljiv karakter.</p>
       </div>
     </div>
   </div>
@@ -620,12 +623,15 @@ const still = matchMedia('(prefers-reduced-motion:reduce)').matches;
 /* ---------- nav ---------- */
 const nav=document.getElementById('nav');
 const heroEl=document.querySelector('.hero');
+let heroH=0, navH=0;
+function measureNav(){ heroH=heroEl.offsetHeight; navH=nav.offsetHeight; }
 function navState(){
   nav.classList.toggle('stuck',scrollY>40);
-  nav.classList.toggle('past', scrollY > heroEl.offsetHeight - nav.offsetHeight*1.5);
+  nav.classList.toggle('past', scrollY > heroH - navH*1.5);
 }
 addEventListener('scroll',navState,{passive:true});
-addEventListener('resize',navState); navState();
+addEventListener('resize',()=>{ measureNav(); navState(); });
+measureNav(); navState();
 
 /* ---------- mobile menu ---------- */
 const navToggle=document.querySelector('.navtoggle');
