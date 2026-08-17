@@ -1007,7 +1007,9 @@ function heroIn(){
     fetch('https://api.web3forms.com/submit', {
       method:'POST', headers:{Accept:'application/json'}, body:new FormData(form)
     }).then(r=>r.json()).then(data=>{
-      if(data.success){ btn.textContent=MSG.sent[lang]; form.reset(); }
+      if(data.success){ btn.textContent=MSG.sent[lang]; form.reset();
+        setTimeout(()=>{ window.location.href = (lang==='en' ? '/success' : '/uspjeh'); }, 600);
+      }
       else { btn.textContent=MSG.error[lang]; btn.disabled=false; }
     }).catch(()=>{ btn.textContent=MSG.error[lang]; btn.disabled=false; });
   });
