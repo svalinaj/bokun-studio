@@ -1,6 +1,24 @@
 <!DOCTYPE html>
 <html lang="hr">
 <head>
+<!-- Consent Mode default — must run before Google Tag Manager loads -->
+<script>
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);}
+(function(){
+  var c=null;
+  try{ c=JSON.parse(localStorage.getItem('bokun-consent')||'null'); }catch(e){}
+  gtag('consent','default',{
+    'ad_storage': c&&c.marketing?'granted':'denied',
+    'ad_user_data': c&&c.marketing?'granted':'denied',
+    'ad_personalization': c&&c.marketing?'granted':'denied',
+    'analytics_storage': c&&c.statistics?'granted':'denied',
+    'functionality_storage': c&&c.preferences?'granted':'denied',
+    'personalization_storage': c&&c.preferences?'granted':'denied',
+    'security_storage':'granted'
+  });
+})();
+</script>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -286,6 +304,47 @@ footer a:hover{color:var(--copper)}
 .legal .body{font-size:.8rem;color:rgba(239,235,226,.46);max-width:76ch;margin-top:1rem;line-height:1.72}
 .legal .body p{margin-bottom:.7rem}
 mark{background:rgba(191,99,61,.2);color:var(--copper);padding:1px .3rem}
+
+/* ---- cookie consent ---- */
+.cconsent{position:fixed;left:1.4rem;right:1.4rem;bottom:1.4rem;z-index:400;background:var(--paper);
+  border:1px solid var(--ink-16);box-shadow:0 1.2rem 3rem rgba(22,26,31,.18);padding:1.7rem 2rem;
+  display:flex;gap:2.2rem;align-items:flex-start;max-width:74rem;margin:0 auto;
+  transition:transform .5s var(--ease),opacity .5s var(--ease)}
+.cconsent[hidden]{display:none}
+.cconsent.out{transform:translateY(1.4rem);opacity:0;pointer-events:none}
+.cconsent-main{flex:1;min-width:0}
+.cconsent-main .cconsent-title{font-size:1.05rem;font-weight:600;margin-bottom:.55rem}
+.cconsent-main p{font-size:.85rem;color:var(--ink-64);line-height:1.65;max-width:70ch}
+.cconsent-cats{display:flex;flex-wrap:wrap;gap:1.3rem 1.9rem;margin-top:1.2rem;padding-top:1rem;border-top:1px solid var(--ink-16)}
+.cconsent-cat{display:flex;align-items:center;gap:.6rem;font-size:.8rem;font-weight:600}
+.cswitch{position:relative;display:inline-block;width:2.1rem;height:1.2rem;flex:none;border-radius:1rem}
+.cswitch input{appearance:none;-webkit-appearance:none;position:absolute;inset:0;opacity:0;margin:0;cursor:pointer;z-index:1}
+.cswitch input:disabled{cursor:default}
+.cswitch i{position:absolute;inset:0;border-radius:1rem;background:var(--ink-16);transition:background .25s var(--ease);pointer-events:none}
+.cswitch i::before{content:"";position:absolute;top:.15rem;left:.15rem;width:.9rem;height:.9rem;border-radius:50%;background:var(--paper);transition:transform .25s var(--ease)}
+.cswitch input:checked + i{background:var(--blue)}
+.cswitch input:checked + i::before{transform:translateX(.9rem)}
+.cswitch input:disabled + i{background:var(--ink-42);opacity:.55}
+.cconsent-details{margin-top:1.1rem}
+.cconsent-details summary{cursor:pointer;font-size:.8rem;color:var(--blue);list-style:none}
+.cconsent-details summary::-webkit-details-marker{display:none}
+.cconsent-details[open] summary{margin-bottom:.8rem}
+.cconsent-details summary::after{content:"›";display:inline-block;margin-left:.35rem;transform:rotate(90deg);transition:transform .25s var(--ease)}
+.cconsent-details[open] summary::after{transform:rotate(-90deg)}
+.cconsent-details summary .cd-hide{display:none}
+.cconsent-details[open] summary .cd-show{display:none}
+.cconsent-details[open] summary .cd-hide{display:inline}
+.cconsent-details .cat-block{margin-bottom:.8rem}
+.cconsent-details .cat-block b{display:block;font-size:.78rem;margin-bottom:.2rem}
+.cconsent-details .cat-block p{font-size:.78rem;color:var(--ink-64);line-height:1.6;max-width:64ch}
+.cconsent-actions{display:flex;flex-direction:column;gap:.6rem;flex:none;width:13.5rem}
+.cconsent-actions button.btn{width:100%;justify-content:center;font-size:.875rem}
+.cconsent-reopen{font-size:.7rem;color:rgba(239,235,226,.46);cursor:pointer;background:none;border:0;font:inherit;padding:0;text-decoration:underline;text-underline-offset:.2rem}
+.cconsent-reopen:hover{color:var(--copper)}
+@media(max-width:760px){
+  .cconsent{flex-direction:column;padding:1.4rem;left:.8rem;right:.8rem;bottom:.8rem;max-height:82vh;overflow:auto}
+  .cconsent-actions{width:100%}
+}
 
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01ms!important}.rv{opacity:1;transform:none}}
 
@@ -614,7 +673,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="fcol"><span data-i18n="footer-location">Split · Hrvatska</span><a href="mailto:josip@bokun.studio">josip@bokun.studio</a></div>
   </div>
   <div class="fcol"><a href="https://www.instagram.com/bokun.studio/" target="_blank" rel="noopener">Instagram</a><a href="https://www.linkedin.com/company/bokunstudio" target="_blank" rel="noopener">LinkedIn</a></div>
-  <div class="fcol"><span>© 2026 Bokun Studio</span><span class="regline" data-i18n="footer-legal-line">Fundamento, obrt za proizvodnju videa i dizajn, OIB: 97652366512</span></div>
+  <div class="fcol"><span>© 2026 Bokun Studio</span><span class="regline" data-i18n="footer-legal-line">Fundamento, obrt za proizvodnju videa i dizajn, OIB: 97652366512</span><button type="button" class="cconsent-reopen" id="cconsent-reopen" data-i18n="cookie-settings-link">Postavke kolačića</button></div>
 </footer>
 
 <div class="legal">
@@ -627,9 +686,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p data-i18n="legal-retention-body"><b>Rok čuvanja.</b> Upite čuvamo 3 mjeseca od zadnje komunikacije, nakon čega ih brišemo.</p>
       <p data-i18n="legal-recipients-body"><b>Primatelji.</b> Podaci se ne prodaju niti ustupaju trećim stranama u marketinške svrhe. Obrazac za kontakt obrađuje Web3Forms (web3forms.com) kao naš izvršitelj obrade radi dostave upita na našu e-poštu; podaci se pohranjuju kod njih 30 dana. Učitavanjem stranice preglednik uspostavlja vezu s Google Tag Managerom (Google Ireland Limited).</p>
       <p data-i18n="legal-rights-body"><b>Vaša prava.</b> Imate pravo na pristup, ispravak, brisanje, ograničenje obrade i prigovor, kao i pravo na prenosivost podataka. Zahtjev šaljete na josip@bokun.studio. Pritužbu možete podnijeti Agenciji za zaštitu osobnih podataka (AZOP).</p>
-      <p data-i18n="legal-cookies-body"><b>Kolačići.</b> Stranica koristi Google Tag Manager (GTM) za tehničko upravljanje oznakama. GTM sam po sebi trenutno ne postavlja kolačiće za analitiku ni oglašavanje — kroz njega još nisu aktivirane takve usluge. Učitavanjem stranice vaš preglednik ipak uspostavlja vezu s Googleovim poslužiteljima (Google Ireland Limited), čime se prenosi IP adresa. Ako u budućnosti kroz GTM aktiviramo analitiku ili oglašavanje (npr. Google Analytics), prije toga ćemo uvesti banner za pristanak na kolačiće i zatražiti vašu privolu.</p>
+      <p data-i18n="legal-cookies-body"><b>Kolačići.</b> Stranica koristi Google Tag Manager (GTM) za tehničko upravljanje oznakama. GTM sam po sebi trenutno ne postavlja kolačiće za analitiku ni oglašavanje — kroz njega još nisu aktivirane takve usluge. Učitavanjem stranice vaš preglednik ipak uspostavlja vezu s Googleovim poslužiteljima (Google Ireland Limited), čime se prenosi IP adresa. Na stranici je već ugrađen banner za pristanak na kolačiće kojim unaprijed upravljate svojim postavkama za statistiku, postavke i marketing — svoj odabir možete promijeniti u bilo kojem trenutku putem poveznice "Postavke kolačića" u podnožju stranice. Ako u budućnosti kroz GTM aktiviramo analitiku ili oglašavanje (npr. Google Analytics), te će usluge poštovati vaš odabir iz bannera.</p>
     </div>
   </details>
+</div>
+
+<div class="cconsent" id="cconsent" role="dialog" aria-label="Postavke kolačića" hidden>
+  <div class="cconsent-main">
+    <div class="cconsent-title" data-i18n="cconsent-heading">Ova web-stranica koristi kolačiće</div>
+    <p data-i18n="cconsent-body">Kolačiće upotrebljavamo kako bismo personalizirali sadržaj i oglase, omogućili značajke društvenih medija i analizirali promet. Isto tako, podatke o vašoj upotrebi naše web-lokacije dijelimo s partnerima za društvene medije, oglašavanje i analizu, a oni ih mogu kombinirati s drugim podacima koje ste im pružili ili koje su prikupili dok ste upotrebljavali njihove usluge.</p>
+    <div class="cconsent-cats">
+      <label class="cconsent-cat"><span class="cswitch"><input type="checkbox" checked disabled><i></i></span><span data-i18n="cconsent-cat-necessary">Nužni</span></label>
+      <label class="cconsent-cat"><span class="cswitch"><input type="checkbox" id="c-preferences"><i></i></span><span data-i18n="cconsent-cat-preferences">Za postavke</span></label>
+      <label class="cconsent-cat"><span class="cswitch"><input type="checkbox" id="c-statistics"><i></i></span><span data-i18n="cconsent-cat-statistics">Statistički</span></label>
+      <label class="cconsent-cat"><span class="cswitch"><input type="checkbox" id="c-marketing"><i></i></span><span data-i18n="cconsent-cat-marketing">Marketinški</span></label>
+    </div>
+    <details class="cconsent-details">
+      <summary><span class="cd-show" data-i18n="cconsent-show-details">Prikaži detalje</span><span class="cd-hide" data-i18n="cconsent-hide-details">Sakrij detalje</span></summary>
+      <div class="cat-block"><b data-i18n="cconsent-cat-necessary">Nužni</b><p data-i18n="cconsent-intro-necessary">Nužni kolačići čine stranicu upotrebljivom omogućavajući osnovne funkcije kao što su navigacija stranicom i pristup zaštićenim područjima. Web-stranica ne može ispravno funkcionirati bez ovih kolačića.</p></div>
+      <div class="cat-block"><b data-i18n="cconsent-cat-preferences">Za postavke</b><p data-i18n="cconsent-intro-preferences">Kolačići za postavke omogućuju web-stranici da zapamti podatke koji mijenjaju način na koji se stranica ponaša ili izgleda, kao što je vaš željeni jezik ili regija u kojoj se nalazite.</p></div>
+      <div class="cat-block"><b data-i18n="cconsent-cat-statistics">Statistički</b><p data-i18n="cconsent-intro-statistics">Statistički kolačići anonimnim prikupljanjem i slanjem podataka pomažu vlasnicima stranice da shvate na koji način posjetitelji komuniciraju sa stranicom.</p></div>
+      <div class="cat-block"><b data-i18n="cconsent-cat-marketing">Marketinški</b><p data-i18n="cconsent-intro-marketing">Marketinški kolačići koriste se za praćenje posjetitelja kroz web-stranice. Namjera je prikazivanje oglasa koji su relevantni određenom korisniku i potiču ga na sudjelovanje, što je bitno za izdavače i oglašivače trećih strana.</p></div>
+    </details>
+  </div>
+  <div class="cconsent-actions">
+    <button type="button" class="btn" id="c-allow-all" data-i18n="cconsent-allow-all">Dopusti sve</button>
+    <button type="button" class="btn" id="c-allow-selection" data-i18n="cconsent-allow-selection">Dopusti selektiranje</button>
+    <button type="button" class="btn" id="c-deny" data-i18n="cconsent-deny">Uskrati</button>
+  </div>
 </div>
 
 <template id="i18n-en">
@@ -702,7 +786,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div data-key="legal-retention-body"><b>Retention period.</b> We keep inquiries for 3 months from the last communication, after which they are deleted.</div>
 <div data-key="legal-recipients-body"><b>Recipients.</b> Data is not sold or shared with third parties for marketing purposes. The contact form is processed by Web3Forms (web3forms.com) as our data processor, in order to deliver inquiries to our email; they store the data for 30 days. Loading the site causes your browser to connect to Google Tag Manager (Google Ireland Limited).</div>
 <div data-key="legal-rights-body"><b>Your rights.</b> You have the right to access, correct, delete, and restrict the processing of your data, as well as to object to processing and to data portability. Send requests to josip@bokun.studio. You may file a complaint with the Croatian Personal Data Protection Agency (AZOP).</div>
-<div data-key="legal-cookies-body"><b>Cookies.</b> The site uses Google Tag Manager (GTM) for technical tag management. GTM itself doesn't currently set any analytics or advertising cookies — no such services have been activated through it yet. Loading the page does, however, cause your browser to connect to Google's servers (Google Ireland Limited), which transmits your IP address. If we activate analytics or advertising through GTM in the future (e.g. Google Analytics), we will first introduce a cookie consent banner and request your consent.</div>
+<div data-key="legal-cookies-body"><b>Cookies.</b> The site uses Google Tag Manager (GTM) for technical tag management. GTM itself doesn't currently set any analytics or advertising cookies — no such services have been activated through it yet. Loading the page does, however, cause your browser to connect to Google's servers (Google Ireland Limited), which transmits your IP address. The site already has a cookie consent banner built in, letting you manage your statistics, preferences, and marketing settings in advance — you can change your choice at any time via the "Cookie settings" link in the footer. If we activate analytics or advertising through GTM in the future (e.g. Google Analytics), those services will respect your choice from the banner.</div>
+<div data-key="cookie-settings-link">Cookie settings</div>
+<div data-key="cconsent-heading">This website uses cookies</div>
+<div data-key="cconsent-body">We use cookies to personalize content and ads, provide social media features, and analyze our traffic. We also share information about your use of our site with our social media, advertising, and analytics partners, who may combine it with other information you've provided to them or that they've collected from your use of their services.</div>
+<div data-key="cconsent-cat-necessary">Necessary</div>
+<div data-key="cconsent-cat-preferences">Preferences</div>
+<div data-key="cconsent-cat-statistics">Statistics</div>
+<div data-key="cconsent-cat-marketing">Marketing</div>
+<div data-key="cconsent-show-details">Show details</div>
+<div data-key="cconsent-hide-details">Hide details</div>
+<div data-key="cconsent-intro-necessary">Necessary cookies make the website usable by enabling basic functions like page navigation and access to secure areas. The website cannot function properly without these cookies.</div>
+<div data-key="cconsent-intro-preferences">Preference cookies let the website remember information that changes how it behaves or looks, such as your preferred language or region.</div>
+<div data-key="cconsent-intro-statistics">Statistics cookies help site owners understand how visitors interact with the website by collecting and reporting information anonymously.</div>
+<div data-key="cconsent-intro-marketing">Marketing cookies are used to track visitors across websites. The intention is to display ads that are relevant and engaging to the individual user, which matters to publishers and third-party advertisers.</div>
+<div data-key="cconsent-allow-all">Allow all</div>
+<div data-key="cconsent-allow-selection">Allow selection</div>
+<div data-key="cconsent-deny">Deny</div>
 </template>
 
 <script>
@@ -881,6 +981,48 @@ function heroIn(){
       else { btn.textContent=MSG.error[lang]; btn.disabled=false; }
     }).catch(()=>{ btn.textContent=MSG.error[lang]; btn.disabled=false; });
   });
+})();
+
+/* ---------- cookie consent ---------- */
+(function(){
+  const KEY='bokun-consent';
+  const banner=document.getElementById('cconsent');
+  if(!banner) return;
+  const t={ pref:document.getElementById('c-preferences'), stat:document.getElementById('c-statistics'), mkt:document.getElementById('c-marketing') };
+  function pushConsent(state){
+    gtag('consent','update',{
+      'analytics_storage': state.statistics?'granted':'denied',
+      'ad_storage': state.marketing?'granted':'denied',
+      'ad_user_data': state.marketing?'granted':'denied',
+      'ad_personalization': state.marketing?'granted':'denied',
+      'functionality_storage': state.preferences?'granted':'denied',
+      'personalization_storage': state.preferences?'granted':'denied'
+    });
+  }
+  function save(state){
+    const record={ necessary:true, preferences:!!state.preferences, statistics:!!state.statistics, marketing:!!state.marketing,
+      ts:new Date().toISOString(), id:(crypto.randomUUID?crypto.randomUUID():String(Date.now())+Math.random().toString(16).slice(2)) };
+    try{ localStorage.setItem(KEY, JSON.stringify(record)); }catch(e){}
+    pushConsent(record);
+    return record;
+  }
+  function hide(){ banner.classList.add('out'); setTimeout(()=>{ banner.hidden=true; },500); }
+  function show(prefill){
+    banner.hidden=false; requestAnimationFrame(()=>banner.classList.remove('out'));
+    t.pref.checked=!!(prefill&&prefill.preferences);
+    t.stat.checked=!!(prefill&&prefill.statistics);
+    t.mkt.checked=!!(prefill&&prefill.marketing);
+  }
+  let existing=null;
+  try{ existing=JSON.parse(localStorage.getItem(KEY)||'null'); }catch(e){}
+  if(existing) pushConsent(existing);
+  else setTimeout(()=>show(null), 1200);
+
+  document.getElementById('c-allow-all').addEventListener('click',()=>{ existing=save({preferences:true,statistics:true,marketing:true}); hide(); });
+  document.getElementById('c-allow-selection').addEventListener('click',()=>{ existing=save({preferences:t.pref.checked,statistics:t.stat.checked,marketing:t.mkt.checked}); hide(); });
+  document.getElementById('c-deny').addEventListener('click',()=>{ existing=save({preferences:false,statistics:false,marketing:false}); hide(); });
+  const reopen=document.getElementById('cconsent-reopen');
+  if(reopen) reopen.addEventListener('click',()=>show(existing));
 })();
 
 /* ---------- loader: quick flicker, capped, once per session ---------- */
