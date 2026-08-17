@@ -305,7 +305,26 @@ footer a:hover{color:var(--copper)}
 .legal .body p{margin-bottom:.7rem}
 mark{background:rgba(191,99,61,.2);color:var(--copper);padding:1px .3rem}
 
-/* ---- cookie consent ---- */
+/* ---- cookie consent: compact bar ---- */
+.cmini{position:fixed;left:1.4rem;right:1.4rem;bottom:1.4rem;z-index:400;background:var(--paper);
+  border:1px solid var(--ink-16);box-shadow:0 1.2rem 3rem rgba(22,26,31,.18);padding:1.1rem 1.5rem;
+  display:flex;gap:1.6rem;align-items:center;flex-wrap:wrap;max-width:60rem;margin:0 auto;
+  transition:transform .5s var(--ease),opacity .5s var(--ease)}
+.cmini[hidden]{display:none}
+.cmini.out{transform:translateY(1.4rem);opacity:0;pointer-events:none}
+.cmini p{flex:1;min-width:16rem;font-size:.82rem;color:var(--ink-64);line-height:1.55}
+.cmini p a{color:var(--ink);text-decoration:underline;text-underline-offset:.15rem}
+.cmini p a:hover{color:var(--blue)}
+.cmini-actions{display:flex;align-items:center;gap:1.2rem;flex:none}
+.cmini-customize{background:none;border:0;color:var(--blue);font:inherit;font-size:.82rem;cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:.2rem}
+.cmini-actions .btn{padding:.7rem 1.3rem;font-size:.82rem}
+@media(max-width:760px){
+  .cmini{flex-direction:column;align-items:stretch;left:.8rem;right:.8rem;bottom:.8rem;padding:1.2rem}
+  .cmini-actions{justify-content:space-between;width:100%;gap:.8rem}
+  .cmini-actions .btn{flex:1}
+}
+
+/* ---- cookie consent: full preference panel ---- */
 .cconsent{position:fixed;left:1.4rem;right:1.4rem;bottom:1.4rem;z-index:400;background:var(--paper);
   border:1px solid var(--ink-16);box-shadow:0 1.2rem 3rem rgba(22,26,31,.18);padding:1.7rem 2rem;
   display:flex;gap:2.2rem;align-items:flex-start;max-width:74rem;margin:0 auto;
@@ -677,7 +696,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 
 <div class="legal">
-  <details>
+  <details id="legal-details">
     <summary data-i18n="legal-summary">Privatnost i obrada podataka</summary>
     <div class="body">
       <p data-i18n="legal-controller-body"><b>Voditelj obrade.</b> Fundamento, obrt za proizvodnju videa i dizajn, vl. Josip Svalina, Solin, Parači 6, OIB: 97652366512, e-pošta josip@bokun.studio.</p>
@@ -689,6 +708,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p data-i18n="legal-cookies-body"><b>Kolačići.</b> Stranica koristi Google Tag Manager (GTM) za tehničko upravljanje oznakama. GTM sam po sebi trenutno ne postavlja kolačiće za analitiku ni oglašavanje — kroz njega još nisu aktivirane takve usluge. Učitavanjem stranice vaš preglednik ipak uspostavlja vezu s Googleovim poslužiteljima (Google Ireland Limited), čime se prenosi IP adresa. Na stranici je već ugrađen banner za pristanak na kolačiće kojim unaprijed upravljate svojim postavkama za statistiku, postavke i marketing — svoj odabir možete promijeniti u bilo kojem trenutku putem poveznice "Postavke kolačića" u podnožju stranice. Ako u budućnosti kroz GTM aktiviramo analitiku ili oglašavanje (npr. Google Analytics), te će usluge poštovati vaš odabir iz bannera.</p>
     </div>
   </details>
+</div>
+
+<div class="cmini" id="cconsent-mini" role="dialog" aria-label="Kolačići" hidden>
+  <p data-i18n="cconsent-mini-body">Koristimo kolačiće za personalizaciju sadržaja, oglasa i analizu prometa. Više u <a href="#legal-details" class="cmini-link">Politici privatnosti</a>.</p>
+  <div class="cmini-actions">
+    <button type="button" class="cmini-customize" id="c-customize" data-i18n="cconsent-customize">Prilagodi</button>
+    <button type="button" class="btn" id="c-mini-deny" data-i18n="cconsent-deny">Uskrati</button>
+    <button type="button" class="btn" id="c-mini-allow" data-i18n="cconsent-allow-all">Dopusti sve</button>
+  </div>
 </div>
 
 <div class="cconsent" id="cconsent" role="dialog" aria-label="Postavke kolačića" hidden>
@@ -803,6 +831,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div data-key="cconsent-allow-all">Allow all</div>
 <div data-key="cconsent-allow-selection">Allow selection</div>
 <div data-key="cconsent-deny">Deny</div>
+<div data-key="cconsent-mini-body">We use cookies to personalize content and ads, and to analyze our traffic. More in our <a href="#legal-details" class="cmini-link">Privacy Policy</a>.</div>
+<div data-key="cconsent-customize">Customize</div>
 </template>
 
 <script>
@@ -983,11 +1013,12 @@ function heroIn(){
   });
 })();
 
-/* ---------- cookie consent ---------- */
+/* ---------- cookie consent: compact bar + full preference panel ---------- */
 (function(){
   const KEY='bokun-consent';
-  const banner=document.getElementById('cconsent');
-  if(!banner) return;
+  const mini=document.getElementById('cconsent-mini');
+  const full=document.getElementById('cconsent');
+  if(!mini || !full) return;
   const t={ pref:document.getElementById('c-preferences'), stat:document.getElementById('c-statistics'), mkt:document.getElementById('c-marketing') };
   function pushConsent(state){
     gtag('consent','update',{
@@ -1006,23 +1037,42 @@ function heroIn(){
     pushConsent(record);
     return record;
   }
-  function hide(){ banner.classList.add('out'); setTimeout(()=>{ banner.hidden=true; },500); }
-  function show(prefill){
-    banner.hidden=false; requestAnimationFrame(()=>banner.classList.remove('out'));
+  function hideEl(el){ el.classList.add('out'); setTimeout(()=>{ el.hidden=true; },500); }
+  function showEl(el){ el.hidden=false; requestAnimationFrame(()=>el.classList.remove('out')); }
+  function showMini(){ showEl(mini); }
+  function showFull(prefill){
+    hideEl(mini);
     t.pref.checked=!!(prefill&&prefill.preferences);
     t.stat.checked=!!(prefill&&prefill.statistics);
     t.mkt.checked=!!(prefill&&prefill.marketing);
+    showEl(full);
   }
+  function finalize(state){ existing=save(state); hideEl(mini); hideEl(full); }
+
   let existing=null;
   try{ existing=JSON.parse(localStorage.getItem(KEY)||'null'); }catch(e){}
   if(existing) pushConsent(existing);
-  else setTimeout(()=>show(null), 1200);
+  else setTimeout(showMini, 1200);
 
-  document.getElementById('c-allow-all').addEventListener('click',()=>{ existing=save({preferences:true,statistics:true,marketing:true}); hide(); });
-  document.getElementById('c-allow-selection').addEventListener('click',()=>{ existing=save({preferences:t.pref.checked,statistics:t.stat.checked,marketing:t.mkt.checked}); hide(); });
-  document.getElementById('c-deny').addEventListener('click',()=>{ existing=save({preferences:false,statistics:false,marketing:false}); hide(); });
+  document.getElementById('c-mini-allow').addEventListener('click',()=>finalize({preferences:true,statistics:true,marketing:true}));
+  document.getElementById('c-mini-deny').addEventListener('click',()=>finalize({preferences:false,statistics:false,marketing:false}));
+  document.getElementById('c-customize').addEventListener('click',()=>showFull(existing));
+
+  document.getElementById('c-allow-all').addEventListener('click',()=>finalize({preferences:true,statistics:true,marketing:true}));
+  document.getElementById('c-allow-selection').addEventListener('click',()=>finalize({preferences:t.pref.checked,statistics:t.stat.checked,marketing:t.mkt.checked}));
+  document.getElementById('c-deny').addEventListener('click',()=>finalize({preferences:false,statistics:false,marketing:false}));
+
   const reopen=document.getElementById('cconsent-reopen');
-  if(reopen) reopen.addEventListener('click',()=>show(existing));
+  if(reopen) reopen.addEventListener('click',()=>showFull(existing));
+
+  document.addEventListener('click',e=>{
+    const a=e.target.closest && e.target.closest('a.cmini-link');
+    if(!a) return;
+    e.preventDefault();
+    hideEl(mini); hideEl(full);
+    const d=document.getElementById('legal-details');
+    if(d){ d.open=true; d.scrollIntoView({behavior:'smooth', block:'center'}); }
+  });
 })();
 
 /* ---------- loader: quick flicker, capped, once per session ---------- */
