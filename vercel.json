@@ -1,6 +1,0 @@
-{
-  "rewrites": [
-    { "source": "/success", "destination": "/success.html" },
-    { "source": "/uspjeh", "destination": "/uspjeh.html" }
-  ]
-}
