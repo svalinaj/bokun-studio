@@ -308,14 +308,14 @@ mark{background:rgba(191,99,61,.2);color:var(--copper);padding:1px .3rem}
 /* ---- cookie consent: compact bar ---- */
 .cmini{position:fixed;left:1.4rem;right:1.4rem;bottom:1.4rem;z-index:400;background:var(--paper);
   border:1px solid var(--ink-16);box-shadow:0 1.2rem 3rem rgba(22,26,31,.18);padding:1.1rem 1.5rem;
-  display:flex;gap:1.6rem;align-items:center;flex-wrap:wrap;max-width:60rem;margin:0 auto;
+  display:flex;gap:1.6rem;align-items:baseline;flex-wrap:wrap;max-width:60rem;margin:0 auto;
   transition:transform .5s var(--ease),opacity .5s var(--ease)}
 .cmini[hidden]{display:none}
 .cmini.out{transform:translateY(1.4rem);opacity:0;pointer-events:none}
 .cmini p{flex:1;min-width:16rem;font-size:.82rem;color:var(--ink-64);line-height:1.55}
 .cmini p a{color:var(--ink);text-decoration:underline;text-underline-offset:.15rem}
 .cmini p a:hover{color:var(--blue)}
-.cmini-actions{display:flex;align-items:center;gap:1.2rem;flex:none}
+.cmini-actions{display:flex;align-items:baseline;gap:1.2rem;flex:none}
 .cmini-customize{background:none;border:0;color:var(--blue);font:inherit;font-size:.82rem;cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:.2rem}
 .cmini-actions .btn{padding:.7rem 1.3rem;font-size:.82rem}
 @media(max-width:760px){
@@ -714,7 +714,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <p data-i18n="cconsent-mini-body">Koristimo kolačiće za personalizaciju sadržaja, oglasa i analizu prometa. Više u <a href="#legal-details" class="cmini-link">Politici privatnosti</a>.</p>
   <div class="cmini-actions">
     <button type="button" class="cmini-customize" id="c-customize" data-i18n="cconsent-customize">Prilagodi</button>
-    <button type="button" class="btn" id="c-mini-deny" data-i18n="cconsent-deny">Uskrati</button>
+    <button type="button" class="btn ghost" id="c-mini-deny" data-i18n="cconsent-deny">Uskrati</button>
     <button type="button" class="btn" id="c-mini-allow" data-i18n="cconsent-allow-all">Dopusti sve</button>
   </div>
 </div>
