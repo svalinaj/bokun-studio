@@ -107,7 +107,7 @@ html{font-size:16px;scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflo
 body{background:var(--paper);color:var(--ink);
   font-family:var(--font);font-optical-sizing:auto;
   font-size:1rem;line-height:1.62;letter-spacing:-.016em;font-variant-numeric:tabular-nums;
-  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;transition:padding-bottom .35s var(--ease)}
 img,video{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
 ::selection{background:var(--blue);color:var(--paper)}
@@ -295,14 +295,36 @@ footer .sym{width:2rem;color:var(--paper);margin-bottom:1.2rem}
 footer a:hover{color:var(--copper)}
 .fcol{display:flex;flex-direction:column;gap:.45rem;font-size:.875rem;color:rgba(239,235,226,.66)}
 .fcol .regline{font-size:.7rem;color:rgba(239,235,226,.34)}
-.legal{background:var(--ink);color:var(--paper);padding:0 var(--m) 3.4rem}
-.legal details{border-top:1px solid rgba(239,235,226,.14);padding-top:1.1rem}
-.legal summary{cursor:pointer;font-size:.875rem;color:rgba(239,235,226,.66);list-style:none}
-.legal summary::-webkit-details-marker{display:none}
-.legal summary::before{content:"+ ";color:var(--copper)}
-.legal details[open] summary::before{content:"\2013 "}
-.legal .body{font-size:.8rem;color:rgba(239,235,226,.46);max-width:76ch;margin-top:1rem;line-height:1.72}
-.legal .body p{margin-bottom:.7rem}
+.legal{background:var(--ink);color:var(--paper);padding:0 var(--m) 2.6rem}
+.legal-bar{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;border-top:1px solid rgba(239,235,226,.14);padding-top:1.1rem}
+.legal-link{cursor:pointer;font-size:.875rem;color:rgba(239,235,226,.66);background:none;border:0;font:inherit;padding:0;white-space:nowrap;transition:color .3s}
+.legal-link:hover{color:var(--copper)}
+.legal-sep{color:rgba(239,235,226,.3);font-size:.875rem}
+
+/* ---- privacy policy modal ---- */
+.modal-overlay{position:fixed;inset:0;z-index:500;background:rgba(22,26,31,.6);
+  opacity:0;pointer-events:none;transition:opacity .35s var(--ease)}
+.modal-overlay.show{opacity:1;pointer-events:auto}
+.modal-overlay[hidden]{display:none}
+.legal-modal{position:fixed;top:50%;left:50%;z-index:501;background:var(--paper);color:var(--ink);
+  width:min(90vw,52rem);max-height:82vh;display:flex;flex-direction:column;
+  box-shadow:0 2rem 5rem rgba(22,26,31,.35);
+  transform:translate(-50%,-46%);opacity:0;pointer-events:none;
+  transition:opacity .35s var(--ease),transform .35s var(--ease)}
+.legal-modal[hidden]{display:none}
+.legal-modal.show{opacity:1;pointer-events:auto;transform:translate(-50%,-50%)}
+.legal-modal-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:1.4rem 1.8rem;border-bottom:1px solid var(--ink-16);flex:none}
+.legal-modal-title{font-size:1.05rem;font-weight:600}
+.legal-modal-close{background:none;border:0;font-size:1.5rem;line-height:1;color:var(--ink-64);cursor:pointer;padding:.2rem .4rem;transition:color .3s}
+.legal-modal-close:hover{color:var(--copper)}
+.legal-modal-body{padding:1.5rem 1.8rem 2rem;overflow-y:auto;font-size:.8rem;color:var(--ink-64);line-height:1.72}
+.legal-modal-body p{margin-bottom:.9rem}
+@media(max-width:640px){
+  .legal-modal{width:92vw;max-height:86vh}
+  .legal-modal-head{padding:1.2rem 1.4rem}
+  .legal-modal-body{padding:1.2rem 1.4rem 1.6rem}
+}
 mark{background:rgba(191,99,61,.2);color:var(--copper);padding:1px .3rem}
 
 /* ---- cookie consent: compact bar ---- */
@@ -692,26 +714,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="fcol"><span data-i18n="footer-location">Split · Hrvatska</span><a href="mailto:josip@bokun.studio">josip@bokun.studio</a></div>
   </div>
   <div class="fcol"><a href="https://www.instagram.com/bokun.studio/" target="_blank" rel="noopener">Instagram</a><a href="https://www.linkedin.com/company/bokunstudio" target="_blank" rel="noopener">LinkedIn</a></div>
-  <div class="fcol"><span>© 2026 Bokun Studio</span><span class="regline" data-i18n="footer-legal-line">Fundamento, obrt za proizvodnju videa i dizajn, OIB: 97652366512</span><button type="button" class="cconsent-reopen" id="cconsent-reopen" data-i18n="cookie-settings-link">Postavke kolačića</button></div>
+  <div class="fcol"><span>© 2026 Bokun Studio</span><span class="regline" data-i18n="footer-legal-line">Fundamento, obrt za proizvodnju videa i dizajn, OIB: 97652366512</span></div>
 </footer>
 
 <div class="legal">
-  <details id="legal-details">
-    <summary data-i18n="legal-summary">Privatnost i obrada podataka</summary>
-    <div class="body">
-      <p data-i18n="legal-controller-body"><b>Voditelj obrade.</b> Fundamento, obrt za proizvodnju videa i dizajn, vl. Josip Svalina, Solin, Parači 6, OIB: 97652366512, e-pošta josip@bokun.studio.</p>
-      <p data-i18n="legal-data-body"><b>Koje podatke prikupljamo.</b> Putem obrasca za kontakt prikupljamo ime, e-adresu, okvirni budžet i sadržaj poruke. Stranica koristi Google Tag Manager (vidi odjeljak Kolačići) — osim toga, ne prikupljamo podatke automatski.</p>
-      <p data-i18n="legal-purpose-body"><b>Svrha i pravna osnova.</b> Podatke obrađujemo isključivo radi odgovora na vaš upit i eventualnog sklapanja ugovora. Pravna osnova je poduzimanje radnji na zahtjev ispitanika prije sklapanja ugovora (čl. 6. st. 1. t. b GDPR-a) te legitimni interes odgovaranja na poslovne upite (čl. 6. st. 1. t. f).</p>
-      <p data-i18n="legal-retention-body"><b>Rok čuvanja.</b> Upite čuvamo 3 mjeseca od zadnje komunikacije, nakon čega ih brišemo.</p>
-      <p data-i18n="legal-recipients-body"><b>Primatelji.</b> Podaci se ne prodaju niti ustupaju trećim stranama u marketinške svrhe. Obrazac za kontakt obrađuje Web3Forms (web3forms.com) kao naš izvršitelj obrade radi dostave upita na našu e-poštu; podaci se pohranjuju kod njih 30 dana. Učitavanjem stranice preglednik uspostavlja vezu s Google Tag Managerom (Google Ireland Limited).</p>
-      <p data-i18n="legal-rights-body"><b>Vaša prava.</b> Imate pravo na pristup, ispravak, brisanje, ograničenje obrade i prigovor, kao i pravo na prenosivost podataka. Zahtjev šaljete na josip@bokun.studio. Pritužbu možete podnijeti Agenciji za zaštitu osobnih podataka (AZOP).</p>
-      <p data-i18n="legal-cookies-body"><b>Kolačići.</b> Stranica koristi Google Tag Manager (GTM) za tehničko upravljanje oznakama. GTM sam po sebi trenutno ne postavlja kolačiće za analitiku ni oglašavanje — kroz njega još nisu aktivirane takve usluge. Učitavanjem stranice vaš preglednik ipak uspostavlja vezu s Googleovim poslužiteljima (Google Ireland Limited), čime se prenosi IP adresa. Na stranici je već ugrađen banner za pristanak na kolačiće kojim unaprijed upravljate svojim postavkama za statistiku, postavke i marketing — svoj odabir možete promijeniti u bilo kojem trenutku putem poveznice "Postavke kolačića" u podnožju stranice. Ako u budućnosti kroz GTM aktiviramo analitiku ili oglašavanje (npr. Google Analytics), te će usluge poštovati vaš odabir iz bannera.</p>
-    </div>
-  </details>
+  <div class="legal-bar">
+    <button type="button" class="legal-link" id="legal-trigger" data-i18n="legal-summary">Privatnost i obrada podataka</button>
+    <span class="legal-sep" aria-hidden="true">·</span>
+    <button type="button" class="legal-link cconsent-reopen" id="cconsent-reopen" data-i18n="cookie-settings-link">Postavke kolačića</button>
+  </div>
+</div>
+
+<div class="modal-overlay" id="legal-overlay" hidden></div>
+<div class="legal-modal" id="legal-modal" role="dialog" aria-modal="true" aria-labelledby="legal-modal-title" hidden>
+  <div class="legal-modal-head">
+    <div class="legal-modal-title" id="legal-modal-title" data-i18n="legal-summary">Privatnost i obrada podataka</div>
+    <button type="button" class="legal-modal-close" id="legal-modal-close" aria-label="Zatvori" data-i18n-aria="legal-modal-close-aria">&times;</button>
+  </div>
+  <div class="legal-modal-body">
+    <p data-i18n="legal-controller-body"><b>Voditelj obrade.</b> Fundamento, obrt za proizvodnju videa i dizajn, vl. Josip Svalina, Solin, Parači 6, OIB: 97652366512, e-pošta josip@bokun.studio.</p>
+    <p data-i18n="legal-data-body"><b>Koje podatke prikupljamo.</b> Putem obrasca za kontakt prikupljamo ime, e-adresu, okvirni budžet i sadržaj poruke. Stranica koristi Google Tag Manager (vidi odjeljak Kolačići) — osim toga, ne prikupljamo podatke automatski.</p>
+    <p data-i18n="legal-purpose-body"><b>Svrha i pravna osnova.</b> Podatke obrađujemo isključivo radi odgovora na vaš upit i eventualnog sklapanja ugovora. Pravna osnova je poduzimanje radnji na zahtjev ispitanika prije sklapanja ugovora (čl. 6. st. 1. t. b GDPR-a) te legitimni interes odgovaranja na poslovne upite (čl. 6. st. 1. t. f).</p>
+    <p data-i18n="legal-retention-body"><b>Rok čuvanja.</b> Upite čuvamo 3 mjeseca od zadnje komunikacije, nakon čega ih brišemo.</p>
+    <p data-i18n="legal-recipients-body"><b>Primatelji.</b> Podaci se ne prodaju niti ustupaju trećim stranama u marketinške svrhe. Obrazac za kontakt obrađuje Web3Forms (web3forms.com) kao naš izvršitelj obrade radi dostave upita na našu e-poštu; podaci se pohranjuju kod njih 30 dana. Učitavanjem stranice preglednik uspostavlja vezu s Google Tag Managerom (Google Ireland Limited).</p>
+    <p data-i18n="legal-rights-body"><b>Vaša prava.</b> Imate pravo na pristup, ispravak, brisanje, ograničenje obrade i prigovor, kao i pravo na prenosivost podataka. Zahtjev šaljete na josip@bokun.studio. Pritužbu možete podnijeti Agenciji za zaštitu osobnih podataka (AZOP).</p>
+    <p data-i18n="legal-cookies-body"><b>Kolačići.</b> Stranica koristi Google Tag Manager (GTM) za tehničko upravljanje oznakama. GTM sam po sebi trenutno ne postavlja kolačiće za analitiku ni oglašavanje — kroz njega još nisu aktivirane takve usluge. Učitavanjem stranice vaš preglednik ipak uspostavlja vezu s Googleovim poslužiteljima (Google Ireland Limited), čime se prenosi IP adresa. Na stranici je već ugrađen banner za pristanak na kolačiće kojim unaprijed upravljate svojim postavkama za statistiku, postavke i marketing — svoj odabir možete promijeniti u bilo kojem trenutku putem poveznice "Postavke kolačića" u podnožju stranice. Ako u budućnosti kroz GTM aktiviramo analitiku ili oglašavanje (npr. Google Analytics), te će usluge poštovati vaš odabir iz bannera.</p>
+  </div>
 </div>
 
 <div class="cmini" id="cconsent-mini" role="dialog" aria-label="Kolačići" hidden>
-  <p data-i18n="cconsent-mini-body">Koristimo kolačiće za personalizaciju sadržaja, oglasa i analizu prometa. Više u <a href="#legal-details" class="cmini-link">Politici privatnosti</a>.</p>
+  <p data-i18n="cconsent-mini-body">Koristimo kolačiće za personalizaciju sadržaja, oglasa i analizu prometa. Više u <a href="#legal-modal" class="cmini-link">Politici privatnosti</a>.</p>
   <div class="cmini-actions">
     <button type="button" class="cmini-customize" id="c-customize" data-i18n="cconsent-customize">Prilagodi</button>
     <button type="button" class="btn ghost" id="c-mini-deny" data-i18n="cconsent-deny">Uskrati</button>
@@ -808,6 +840,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div data-key="footer-location">Split · Croatia</div>
 <div data-key="footer-legal-line">Fundamento, a sole proprietorship for video production and design, OIB: 97652366512</div>
 <div data-key="legal-summary">Privacy &amp; data processing</div>
+<div data-key="legal-modal-close-aria">Close</div>
 <div data-key="legal-controller-body"><b>Data controller.</b> Fundamento, a sole proprietorship for video production and design, owner Josip Svalina, Solin, Parači 6, Croatia, OIB (tax ID): 97652366512, email josip@bokun.studio.</div>
 <div data-key="legal-data-body"><b>What data we collect.</b> Through the contact form we collect your name, email address, approximate budget, and message content. The site uses Google Tag Manager (see the Cookies section) — beyond that, we don't collect data automatically.</div>
 <div data-key="legal-purpose-body"><b>Purpose and legal basis.</b> We process your data solely to respond to your inquiry and to potentially enter into a contract. The legal basis is taking steps at the data subject's request prior to entering into a contract (Article 6(1)(b) GDPR) and our legitimate interest in responding to business inquiries (Article 6(1)(f) GDPR).</div>
@@ -831,7 +864,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div data-key="cconsent-allow-all">Allow all</div>
 <div data-key="cconsent-allow-selection">Allow selection</div>
 <div data-key="cconsent-deny">Deny</div>
-<div data-key="cconsent-mini-body">We use cookies to personalize content and ads, and to analyze our traffic. More in our <a href="#legal-details" class="cmini-link">Privacy Policy</a>.</div>
+<div data-key="cconsent-mini-body">We use cookies to personalize content and ads, and to analyze our traffic. More in our <a href="#legal-modal" class="cmini-link">Privacy Policy</a>.</div>
 <div data-key="cconsent-customize">Customize</div>
 </template>
 
@@ -1037,8 +1070,14 @@ function heroIn(){
     pushConsent(record);
     return record;
   }
-  function hideEl(el){ el.classList.add('out'); setTimeout(()=>{ el.hidden=true; },500); }
-  function showEl(el){ el.hidden=false; requestAnimationFrame(()=>el.classList.remove('out')); }
+  function syncBottomSpace(){
+    const active=[mini,full].filter(el=>!el.hidden && !el.classList.contains('out'));
+    const h=active.reduce((m,el)=>Math.max(m,el.offsetHeight),0);
+    document.body.style.paddingBottom = h ? (h+24)+'px' : '';
+  }
+  function hideEl(el){ el.classList.add('out'); syncBottomSpace(); setTimeout(()=>{ el.hidden=true; syncBottomSpace(); },500); }
+  function showEl(el){ el.hidden=false; syncBottomSpace(); requestAnimationFrame(()=>{ el.classList.remove('out'); syncBottomSpace(); }); }
+  window.addEventListener('resize', syncBottomSpace);
   function showMini(){ showEl(mini); }
   function showFull(prefill){
     hideEl(mini);
@@ -1070,9 +1109,36 @@ function heroIn(){
     if(!a) return;
     e.preventDefault();
     hideEl(mini); hideEl(full);
-    const d=document.getElementById('legal-details');
-    if(d){ d.open=true; d.scrollIntoView({behavior:'smooth', block:'center'}); }
+    if(typeof window.openLegalModal==='function') window.openLegalModal();
   });
+})();
+
+/* ---------- privacy policy modal ---------- */
+(function(){
+  const overlay=document.getElementById('legal-overlay');
+  const modal=document.getElementById('legal-modal');
+  const closeBtn=document.getElementById('legal-modal-close');
+  const trigger=document.getElementById('legal-trigger');
+  if(!overlay || !modal) return;
+  let lastFocus=null;
+  function openModal(){
+    lastFocus=document.activeElement;
+    overlay.hidden=false; modal.hidden=false;
+    requestAnimationFrame(()=>{ overlay.classList.add('show'); modal.classList.add('show'); });
+    document.body.style.overflow='hidden';
+    if(closeBtn) closeBtn.focus();
+  }
+  function closeModal(){
+    overlay.classList.remove('show'); modal.classList.remove('show');
+    document.body.style.overflow='';
+    setTimeout(()=>{ overlay.hidden=true; modal.hidden=true; }, 350);
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  if(trigger) trigger.addEventListener('click', openModal);
+  if(closeBtn) closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', closeModal);
+  document.addEventListener('keydown', e=>{ if(e.key==='Escape' && !modal.hidden) closeModal(); });
+  window.openLegalModal = openModal;
 })();
 
 /* ---------- loader: quick flicker, capped, once per session ---------- */
