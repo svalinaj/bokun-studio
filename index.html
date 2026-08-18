@@ -296,10 +296,11 @@ footer a:hover{color:var(--copper)}
 .fcol{display:flex;flex-direction:column;gap:.45rem;font-size:.875rem;color:rgba(239,235,226,.66)}
 .fcol .regline{font-size:.7rem;color:rgba(239,235,226,.34)}
 .legal{background:var(--ink);color:var(--paper);padding:0 var(--m) 2.6rem}
-.legal-bar{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;border-top:1px solid rgba(239,235,226,.14);padding-top:1.1rem}
-.legal-link{cursor:pointer;font-size:.875rem;color:rgba(239,235,226,.66);background:none;border:0;font:inherit;padding:0;white-space:nowrap;transition:color .3s}
+.legal-bar{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;border-top:1px solid rgba(239,235,226,.14);padding-top:1.1rem}
+.legal-link{cursor:pointer;font-size:.7rem;color:rgba(239,235,226,.46);background:none;border:0;font:inherit;padding:0;white-space:nowrap;
+  text-decoration:underline;text-underline-offset:.2rem;transition:color .3s}
 .legal-link:hover{color:var(--copper)}
-.legal-sep{color:rgba(239,235,226,.3);font-size:.875rem}
+.legal-sep{color:rgba(239,235,226,.3);font-size:.7rem}
 
 /* ---- privacy policy modal ---- */
 .modal-overlay{position:fixed;inset:0;z-index:500;background:rgba(22,26,31,.6);
@@ -338,7 +339,8 @@ mark{background:rgba(191,99,61,.2);color:var(--copper);padding:1px .3rem}
 .cmini p a{color:var(--ink);text-decoration:underline;text-underline-offset:.15rem}
 .cmini p a:hover{color:var(--blue)}
 .cmini-actions{display:flex;align-items:baseline;gap:1.2rem;flex:none}
-.cmini-customize{background:none;border:0;color:var(--blue);font:inherit;font-size:.82rem;cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:.2rem}
+.cmini-customize{background:none;border:0;color:var(--ink-64);font:inherit;font-size:.82rem;cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:.2rem;transition:color .3s}
+.cmini-customize:hover{color:var(--copper)}
 .cmini-actions .btn{padding:.7rem 1.3rem;font-size:.82rem}
 @media(max-width:760px){
   .cmini{flex-direction:column;align-items:stretch;left:.8rem;right:.8rem;bottom:.8rem;padding:1.2rem}
@@ -380,8 +382,6 @@ mark{background:rgba(191,99,61,.2);color:var(--copper);padding:1px .3rem}
 .cconsent-details .cat-block p{font-size:.78rem;color:var(--ink-64);line-height:1.6;max-width:64ch}
 .cconsent-actions{display:flex;flex-direction:column;gap:.6rem;flex:none;width:13.5rem}
 .cconsent-actions button.btn{width:100%;justify-content:center;font-size:.875rem}
-.cconsent-reopen{font-size:.7rem;color:rgba(239,235,226,.46);cursor:pointer;background:none;border:0;font:inherit;padding:0;text-decoration:underline;text-underline-offset:.2rem}
-.cconsent-reopen:hover{color:var(--copper)}
 @media(max-width:760px){
   .cconsent{flex-direction:column;padding:1.4rem;left:.8rem;right:.8rem;bottom:.8rem;max-height:82vh;overflow:auto}
   .cconsent-actions{width:100%}
@@ -721,7 +721,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="legal-bar">
     <button type="button" class="legal-link" id="legal-trigger" data-i18n="legal-summary">Privatnost i obrada podataka</button>
     <span class="legal-sep" aria-hidden="true">·</span>
-    <button type="button" class="legal-link cconsent-reopen" id="cconsent-reopen" data-i18n="cookie-settings-link">Postavke kolačića</button>
+    <button type="button" class="legal-link" id="cconsent-reopen" data-i18n="cookie-settings-link">Postavke kolačića</button>
   </div>
 </div>
 
